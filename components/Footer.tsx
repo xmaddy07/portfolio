@@ -30,7 +30,7 @@ export default function Footer() {
         viewport={{ once: true }}
         variants={fadeUp}
       >
-        <div className="premium-card mb-12 flex flex-col items-center justify-between gap-6 p-8 sm:flex-row">
+        <div className="premium-card mb-8 flex flex-col items-center justify-between gap-5 p-5 text-center sm:mb-12 sm:flex-row sm:gap-6 sm:p-8 sm:text-left">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted">
               Ready to build?

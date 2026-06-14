@@ -125,7 +125,7 @@ export default function About() {
                 ease: [0.22, 1, 0.36, 1],
               }}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
-              className="premium-card shimmer flex flex-col items-center p-8 text-center"
+              className="premium-card shimmer flex flex-col items-center p-6 text-center sm:p-8"
             >
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 ring-1 ring-accent/25">
                 <stat.icon className="h-7 w-7 text-accent-light" />

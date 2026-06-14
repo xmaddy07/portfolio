@@ -33,12 +33,12 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed left-0 right-0 top-0 z-50 px-4 transition-all duration-500 sm:px-6 lg:px-8 ${
-        scrolled ? "pt-3" : "pt-5"
+        scrolled || isOpen ? "pt-3" : "pt-5"
       }`}
     >
       <nav
-        className={`mx-auto flex max-w-6xl items-center justify-between px-5 transition-all duration-500 ${
-          scrolled ? "nav-glass" : "py-1"
+        className={`mx-auto flex max-w-6xl items-center justify-between px-4 transition-all duration-500 sm:px-5 ${
+          scrolled || isOpen ? "nav-glass" : "py-1"
         }`}
       >
         <motion.a
@@ -91,7 +91,11 @@ export default function Navbar() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-xl border border-white/10 bg-white/[0.03] p-2.5 text-white transition-all hover:border-accent/30 hover:bg-white/5 md:hidden"
+          className={`relative z-50 rounded-xl border p-2.5 text-white transition-all md:hidden ${
+            isOpen
+              ? "border-accent/40 bg-accent/15 shadow-glow"
+              : "border-white/10 bg-white/[0.03] hover:border-accent/30 hover:bg-white/5"
+          }`}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -100,39 +104,58 @@ export default function Navbar() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.25 }}
-            className="mx-auto mt-3 max-w-6xl overflow-hidden rounded-2xl border border-white/10 bg-background/95 shadow-card-hover backdrop-blur-2xl md:hidden"
-          >
-            <ul className="flex flex-col gap-1 p-3">
-              {navLinks.map((link, i) => (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-xl md:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed inset-x-4 top-[4.5rem] z-50 overflow-hidden rounded-3xl border border-white/10 bg-background/95 shadow-card-hover backdrop-blur-2xl md:hidden"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+              <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-accent/15 blur-[60px]" />
+
+              <ul className="relative flex flex-col gap-1 p-4">
+                {navLinks.map((link, i) => (
+                  <motion.li
+                    key={link.href}
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className="group flex w-full items-center justify-between rounded-2xl px-5 py-4 text-left text-base font-medium text-muted transition-all hover:bg-accent/10 hover:text-white active:scale-[0.98]"
+                    >
+                      {link.label}
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent/40 opacity-0 transition-opacity group-hover:opacity-100" />
+                    </button>
+                  </motion.li>
+                ))}
                 <motion.li
-                  key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                  className="pt-3"
                 >
                   <button
-                    onClick={() => handleNavClick(link.href)}
-                    className="w-full rounded-xl px-4 py-3.5 text-left text-sm font-medium text-muted transition-colors hover:bg-accent/10 hover:text-white"
+                    onClick={() => handleNavClick("#contact")}
+                    className="btn-primary shimmer w-full !py-4 text-sm"
                   >
-                    {link.label}
+                    Hire Me
                   </button>
                 </motion.li>
-              ))}
-              <li className="pt-2">
-                <button
-                  onClick={() => handleNavClick("#contact")}
-                  className="btn-primary w-full !py-3 text-sm"
-                >
-                  Hire Me
-                </button>
-              </li>
-            </ul>
-          </motion.div>
+              </ul>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

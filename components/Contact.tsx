@@ -54,7 +54,7 @@ export default function Contact() {
             viewport={{ once: true, margin: "-80px" }}
             variants={slideInLeft}
             onSubmit={handleSubmit}
-            className="premium-card space-y-6 p-8"
+            className="premium-card space-y-5 p-5 sm:space-y-6 sm:p-8"
           >
             {[
               {
@@ -133,7 +133,7 @@ export default function Contact() {
             variants={slideInRight}
             className="flex flex-col justify-center space-y-8"
           >
-            <div className="premium-card p-8">
+            <div className="premium-card p-5 sm:p-8">
               <h3 className="mb-4 font-heading text-xl font-bold text-white">
                 Connect on LinkedIn
               </h3>

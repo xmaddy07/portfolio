@@ -24,7 +24,7 @@ export default function SectionHeader({
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
       variants={staggerContainer}
-      className={`mb-16 overflow-visible ${isCenter ? "text-center" : ""}`}
+      className={`mb-10 overflow-visible sm:mb-16 ${isCenter ? "text-center" : ""}`}
     >
       <motion.span
         variants={fadeUp}
@@ -59,7 +59,7 @@ export default function SectionHeader({
         <motion.p
           variants={fadeUp}
           custom={2}
-          className={`mt-5 text-balance text-lg leading-relaxed text-muted-light ${
+          className={`mt-4 text-balance text-base leading-relaxed text-muted-light sm:mt-5 sm:text-lg ${
             isCenter ? "mx-auto max-w-2xl" : "max-w-2xl"
           }`}
         >

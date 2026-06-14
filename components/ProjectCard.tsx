@@ -72,9 +72,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       custom={index}
       whileHover={{ y: -12 }}
       transition={{ type: "spring", stiffness: 280, damping: 22 }}
-      className="premium-card group overflow-hidden"
+      className="premium-card group overflow-hidden max-sm:shadow-card-hover"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-surface">
+      <div className="relative aspect-[4/3] overflow-hidden bg-surface sm:aspect-[16/10]">
         <Image
           src={project.image}
           alt={`${project.title} screenshot`}
@@ -113,30 +113,30 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Open ${project.title}`}
-            className="absolute inset-0 flex cursor-pointer items-center justify-center opacity-0 transition-all duration-400 group-hover:opacity-100 focus-visible:opacity-100"
+            className="absolute inset-0 flex cursor-pointer items-end justify-end p-4 opacity-100 transition-all duration-400 sm:items-center sm:justify-center sm:opacity-0 sm:group-hover:opacity-100 sm:focus-visible:opacity-100"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-accent/90 text-white shadow-glow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-              <ArrowUpRight className="h-6 w-6" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-accent/90 text-white shadow-glow-lg backdrop-blur-sm transition-transform duration-300 sm:h-14 sm:w-14 sm:group-hover:scale-110">
+              <ArrowUpRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </div>
           </a>
         )}
       </div>
 
-      <div className="p-7">
-        <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/15 ring-1 ring-accent/20">
+      <div className="p-5 sm:p-7">
+        <div className="mb-3 flex items-center gap-3 sm:mb-4">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent/15 ring-1 ring-accent/20">
             <Smartphone className="h-4 w-4 text-accent-light" />
           </div>
-          <h3 className="font-heading text-xl font-bold text-white transition-colors group-hover:text-accent-light">
+          <h3 className="font-heading text-lg font-bold text-white transition-colors group-hover:text-accent-light sm:text-xl">
             {project.title}
           </h3>
         </div>
 
-        <p className="mb-5 text-sm leading-relaxed text-muted-light line-clamp-3">
+        <p className="mb-4 text-sm leading-relaxed text-muted-light line-clamp-3 sm:mb-5">
           {project.description}
         </p>
 
-        <div className="mb-5 flex flex-wrap gap-2">
+        <div className="mb-4 flex flex-wrap gap-2 sm:mb-5">
           {project.tags.map((tag, i) => (
             <motion.span
               key={tag}
@@ -152,15 +152,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {links.length > 0 && (
-          <div className="flex flex-wrap gap-3 border-t border-white/10 pt-5">
+          <div className="flex flex-wrap gap-2 border-t border-white/10 pt-4 sm:gap-3 sm:pt-5">
             {links.map((link) => (
               <motion.a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group/link flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm text-muted transition-all hover:bg-accent/10 hover:text-accent-light"
+                className="group/link flex items-center gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2 text-xs text-muted transition-all hover:border-accent/20 hover:bg-accent/10 hover:text-accent-light sm:border-transparent sm:bg-transparent sm:px-2.5 sm:py-1.5 sm:text-sm"
                 whileHover={{ x: 3 }}
+                whileTap={{ scale: 0.97 }}
               >
                 {link.renderIcon()}
                 {link.label}
