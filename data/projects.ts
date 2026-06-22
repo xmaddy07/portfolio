@@ -33,6 +33,7 @@ export const projects: Project[] = [
       "WebAuthn",
       "Framer Motion",
     ],
+    liveUrl: "https://guest.exylon.app/",
     featured: false,
   },
   {

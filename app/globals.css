@@ -9,7 +9,6 @@
 
   body {
     @apply bg-background text-white antialiased;
-    font-feature-settings: "cv11", "ss01";
   }
 
   h1,

@@ -19,9 +19,9 @@ const config: Config = {
         "muted-light": "#B8B8C8",
       },
       fontFamily: {
-        sans: ["var(--font-jakarta)", "system-ui", "sans-serif"],
-        heading: ["var(--font-syne)", "system-ui", "sans-serif"],
-        display: ["var(--font-syne)", "system-ui", "sans-serif"],
+        sans: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        heading: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
+        display: ["var(--font-space-grotesk)", "system-ui", "sans-serif"],
       },
       backgroundImage: {
         "glass-gradient":
